@@ -43,13 +43,13 @@ body {
 }
 
 .ground {
-    --y: 96;
+    --y: 92;
 
     position: absolute;
-    /* background-color: var(--foreground-color); */
-    left: 50vw;
+    background-color: var(--foreground-color);
     top: calc(var(--y) * 1vh);
     height: 8.5vh;
+    width: 100vw;
 }
 
 .octopus {

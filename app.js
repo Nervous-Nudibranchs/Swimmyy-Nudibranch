@@ -1,5 +1,6 @@
 import Player from "./Player.js";
 import Obstacle from "./Obstacle.js";
+import Constants from "./constants.js";
 
 const playerEl = document.getElementById("player");
 const playerImageEl = document.getElementById("player-image");
@@ -12,10 +13,13 @@ let lastTime = null;
 let jumpTimer = null;
 let keyPress = false;
 let action = "fall";
+let obstacleVelocity = Constants.OBSTACLE_VELOCITY;
 
 function update(time) {
     if (lastTime) {
         const delta = time - lastTime;
+        kelp.update(delta, obstacleVelocity);
+        octopus.update(delta, obstacleVelocity);
         player.update(delta, action, ground, kelp, octopus);
         if (action === "jump" || jumpTimer > 0) {
             action = "fall";

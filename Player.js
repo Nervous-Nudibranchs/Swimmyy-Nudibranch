@@ -38,12 +38,28 @@ export default class Player {
     }
 
     update(delta, action, ground, kelp, octopus) {
+        this.updateVelocity(delta, action);
+        this.updateRotation();
+        this.checkCollisions(ground);
+        this.checkCollisions(kelp);
+        this.checkCollisions(octopus);
+        this.move(delta, this.velocity);
+    }
+
+    move(delta, velocity) {
+        this.y += velocity * delta;
+    }
+
+    updateVelocity(delta, action) {
         if (action === "jump") {
             this.velocity = constants.JUMP_VELOCITY;
         }
         if (this.velocity < constants.MAX_VELOCITY) {
             this.velocity += constants.ACCELERATION * delta;
         }
+    }
+
+    updateRotation() {
         // Rotation based on velocity
         if (this.velocity > 0) {
             this.rotation = "50deg";
@@ -52,21 +68,20 @@ export default class Player {
         } else if (this.velocity < 0) {
             this.rotation = "-50deg";
         }
-        console.log(this.velocity);
+    }
 
-        if (this.rect().bottom >= ground.rect().top) {
-            console.log("Hit the ground!");
-            this.reset();
-        }
+    checkCollisions(obstacle) {
+        const playerRect = this.rect();
+        const obstacleRect = obstacle.rect();
 
         if (
-            this.rect().bottom >= kelp.rect().top &&
-            this.rect().right >= kelp.rect().left
+            playerRect.right > obstacleRect.left &&
+            playerRect.left < obstacleRect.right &&
+            playerRect.top < obstacleRect.bottom &&
+            playerRect.bottom > obstacleRect.top
         ) {
-            console.log("Hit the kelp!");
+            console.log("collision");
             this.reset();
         }
-
-        this.y += this.velocity * delta;
     }
 }

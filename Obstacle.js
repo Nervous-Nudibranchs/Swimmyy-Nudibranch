@@ -15,5 +15,12 @@ export default class Obstacle {
         return this.el.getBoundingClientRect();
     }
 
-    update(delta) {}
+    reset() {
+        this.x = constants.PLAYER_START_Y_POS;
+    }
+
+    update(delta, velocity) {
+        // Move to the left
+        this.x -= velocity * delta;
+    }
 }
