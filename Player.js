@@ -21,9 +21,13 @@ export default class Player {
         this.velocity = constants.INITIAL_VELOCITY;
     }
 
-    update(delta) {
+    update(delta, action) {
+        if (action === "jump") {
+            this.velocity = constants.JUMP_VELOCITY;
+        }
+        if (this.velocity < constants.MAX_VELOCITY) {
+            this.velocity += constants.ACCELERATION * delta;
+        }
         this.y += this.velocity * delta;
-        console.log(this.y);
-        this.velocity += constants.VELOCITY_INCREASE * delta;
     }
 }
