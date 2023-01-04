@@ -1,0 +1,5 @@
+export default {
+    PLAYER_START_Y_POS: 50,
+    INITIAL_VELOCITY: 0,
+    VELOCITY_INCREASE: 0.00005,
+};
