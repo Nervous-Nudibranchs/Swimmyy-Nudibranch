@@ -1,5 +1,6 @@
 export default {
     PLAYER_START_Y_POS: 10,
+    PLAYER_INITIAL_ROTATION: "0deg",
     INITIAL_VELOCITY: 0,
     JUMP_VELOCITY: -0.09,
     MAX_VELOCITY: 0.08,

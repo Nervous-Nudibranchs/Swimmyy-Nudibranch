@@ -11,20 +11,77 @@
 
 body {
     margin: 0;
-    background-color: #333;
     background-color: var(--background-color);
     overflow: hidden;
+    background-image: url("./assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    image-rendering: pixelated;
 }
 
 .player {
     --y: 50;
 
     position: absolute;
-    background-color: var(--foreground-color);
-    left: 50vw;
+    /* background-color: var(--foreground-color); */
+    left: 20vw;
     top: calc(var(--y) * 1vh);
     border-radius: 15%;
-    transform: translate(-50%, -50%);
-    width: 5vh;
     height: 5vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.player-image {
+    --rotation: 50deg;
+
+    width: 10vw;
+    transform: rotate(var(--rotation));
+    transition: all 0.34s;
+}
+
+.ground {
+    --y: 96;
+
+    position: absolute;
+    /* background-color: var(--foreground-color); */
+    left: 50vw;
+    top: calc(var(--y) * 1vh);
+    height: 8.5vh;
+}
+
+.octopus {
+    /* border: 1px solid red; */
+
+    --x: 50;
+
+    position: absolute;
+    left: calc(var(--x) * 1vw);
+    top: -5vh;
+    border-radius: 15%;
+}
+
+.octopus-image {
+    width: 15vw;
+}
+
+.kelp {
+    /* border: 1px solid red; */
+
+    --x: 50;
+
+    position: absolute;
+    left: calc(var(--x) * 1vw);
+    top: 64vh;
+    border-radius: 15%;
+}
+
+.kelp-image {
+    width: 18vw;
+}
+
+.kelp-medium {
+    margin-top: -64px;
 }
