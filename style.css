@@ -35,6 +35,14 @@ body {
     width: 100vh;
 }
 
+.score {
+    display: inline;
+    background-color: none;
+    position: absolute;
+    left: 50vw;
+    font-size: 8vh;
+}
+
 .player {
     /* border: 1px solid red; */
 

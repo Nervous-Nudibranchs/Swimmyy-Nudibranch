@@ -16,7 +16,9 @@ const playerImageEl = document.getElementById("player-image");
 const player = new Player(playerEl, playerImageEl);
 const ground = new Ground(document.getElementById("ground"));
 const gameWindow = document.getElementById("game-window");
+const scoreEl = document.getElementById("score");
 
+let score = 0;
 let gameStarted = false;
 let lastTime = null;
 let jumpTimer = null;
@@ -45,11 +47,31 @@ function update(time) {
             player.updateRotation();
 
             // Check for collisions between player and obstacles
-            checkCollisions(player.rect(), ground.rect());
+            checkCollisions(player.rect(), ground.rect(), "obstacle");
             for (const obstacle of obstacles) {
-                const boundaries = obstacle.rect();
-                checkCollisions(player.rect(), boundaries.kelp);
-                checkCollisions(player.rect(), boundaries.octopus);
+                const containerBoundaries = obstacle.containerBoundaries();
+                const obstacleBoundaries = obstacle.obstacleBoundaries();
+                checkCollisions(
+                    player.rect(),
+                    obstacleBoundaries.kelp,
+                    "obstacle"
+                );
+                checkCollisions(
+                    player.rect(),
+                    obstacleBoundaries.octopus,
+                    "obstacle"
+                );
+                if (
+                    obstacle.point === true &&
+                    checkCollisions(
+                        player.rect(),
+                        containerBoundaries,
+                        "addScore"
+                    )
+                ) {
+                    score++;
+                    obstacle.point = false;
+                }
             }
 
             // Check for user inputs and update state accordingly
@@ -64,6 +86,7 @@ function update(time) {
             }
         }
     }
+    displayScore();
     lastTime = time;
     window.requestAnimationFrame(update);
 }
@@ -112,7 +135,12 @@ function stopGame() {
     gameStarted = false;
 }
 
+function displayScore() {
+    scoreEl.textContent = score;
+}
+
 function resetGame() {
+    score = 0;
     player.reset();
     for (const obstacle of obstacles) {
         obstacle.el.remove();
@@ -122,16 +150,20 @@ function resetGame() {
     createObstacles();
 }
 
-function checkCollisions(rect1, rect2) {
+function checkCollisions(rect1, rect2, type) {
     if (
         rect1.right > rect2.left &&
         rect1.left < rect2.right &&
         rect1.top < rect2.bottom &&
         rect1.bottom > rect2.top
     ) {
-        console.log("collision");
-        dieSound.play();
-        resetGame();
+        if (type === "obstacle") {
+            console.log("collision");
+            dieSound.play();
+            resetGame();
+        } else if (type === "addScore") {
+            return true;
+        }
     }
 }
 
