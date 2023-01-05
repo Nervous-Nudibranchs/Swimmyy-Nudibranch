@@ -24,7 +24,7 @@ let keyPress = false;
 let action = "fall";
 let obstacles = [];
 let createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
-// let kelpType = [];
+let kelpTypes = ["long", "med", "short"];
 
 function update(time) {
     if (lastTime) {
@@ -57,7 +57,6 @@ function update(time) {
                 action = "fall";
                 jumpTimer -= 1;
             }
-            console.log(createObstacleDelay);
             createObstacleDelay -= 1;
             if (createObstacleDelay === 0) {
                 console.log("Creating obstacle");
@@ -136,9 +135,11 @@ function checkCollisions(rect1, rect2) {
 }
 
 function createObstacles() {
-    createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
-    const randomType = "short";
+    const randomNumber = Math.floor(Math.random() * kelpTypes.length);
+    const randomType = kelpTypes[randomNumber];
+    console.log(`Generating a ${randomType} kelp:`);
     const obstacleContainer = new Obstacle(renderObstacle(randomType));
     gameWindow.append(obstacleContainer.el);
     obstacles.push(obstacleContainer);
+    createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
 }
