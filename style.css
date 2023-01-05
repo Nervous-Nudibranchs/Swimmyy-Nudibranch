@@ -2,6 +2,7 @@
 *::after,
 *::before {
     box-sizing: border-box;
+    margin: 0;
 }
 
 :root {
@@ -10,13 +11,28 @@
 }
 
 body {
-    margin: 0;
+    /* border: 1px solid red; */
+
     background-color: var(--background-color);
     overflow: hidden;
-    background-image: url("./assets/background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
     image-rendering: pixelated;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.game-window {
+    /* border: 1px solid red; */
+
+    overflow: hidden;
+    height: 100vh;
+    width: 100vh;
+}
+
+.background-image {
+    height: 100vh;
+    width: 100vh;
 }
 
 .player {
@@ -24,13 +40,13 @@ body {
 
     --y: 50;
 
-    position: absolute;
-    left: 20vw;
+    position: relative;
+    left: 20vh;
     top: calc(var(--y) * 1vh);
 
     overflow: visible;
     height: 5vh;
-    width: 100px;
+    width: 10vh;
 
     display: grid;
     justify-content: center;
@@ -40,7 +56,7 @@ body {
 .player-image {
     --rotation: 50deg;
 
-    width: 13vw;
+    width: 13vh;
     transform: rotate(calc(var(--rotation) * 1deg));
     transition: all 0.34s;
 }
@@ -48,12 +64,12 @@ body {
 .ground {
     /* border: 1px solid red; */
 
-    --y: 91.5;
+    --y: 90;
 
     position: absolute;
     top: calc(var(--y) * 1vh);
-    height: 8.5vh;
-    width: 100vw;
+    height: 9.9vh;
+    width: 100vh;
 }
 
 .octopus {
@@ -62,12 +78,12 @@ body {
     --x: 50;
 
     overflow: visible;
-    height: 370px;
-    width: 130px;
+    height: 42vh;
+    width: 10vh;
 
-    position: absolute;
-    left: calc(var(--x) * 1vw);
-    top: -2vh;
+    position: relative;
+    left: calc(var(--x) * 1vh);
+    top: -106vh;
 
     display: grid;
     justify-content: center;
@@ -75,7 +91,7 @@ body {
 }
 
 .octopus-image {
-    width: 14vw;
+    width: 15vh;
 }
 
 .kelp {
@@ -84,12 +100,12 @@ body {
     --x: 50;
 
     overflow: visible;
-    height: 250px;
-    width: 130px;
+    height: 24vh;
+    width: 10vh;
 
-    position: absolute;
-    left: calc(var(--x) * 1vw);
-    top: 67vh;
+    position: relative;
+    left: calc(var(--x) * 1vh);
+    top: -80vh;
 
     display: grid;
     justify-content: center;
@@ -97,9 +113,9 @@ body {
 }
 
 .kelp-image {
-    width: 16vw;
+    width: 15vh;
 }
 
 .kelp-med {
-    margin-top: -60px;
+    margin-top: -6vh;
 }

@@ -51,6 +51,7 @@ function update(time) {
 }
 
 window.addEventListener("load", () => {
+    /* COMMENT OUT TO STOP */
     window.requestAnimationFrame(update);
 });
 
