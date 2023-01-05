@@ -121,7 +121,7 @@ function checkCollisions(rect1, rect2) {
 }
 
 function createObstacles() {
-  const randomType = "short";
+  const randomType = "long";
   const obstacleContainer = new Obstacle(renderObstacle(randomType));
   gameWindow.append(obstacleContainer.el);
   obstacles.push(obstacleContainer);

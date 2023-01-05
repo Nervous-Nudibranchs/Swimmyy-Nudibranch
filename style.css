@@ -84,6 +84,10 @@ body {
   align-content: center;
 }
 
+.octopus-short {
+  margin-top: -9vh;
+}
+
 .octopus-image {
   width: 15vh;
 }
@@ -104,8 +108,14 @@ body {
   width: 15vh;
 }
 
+.kelp-short {
+  margin-bottom: 2.5vh;
+}
 .kelp-med {
-  margin-top: -6vh;
+  margin-bottom: 7.5vh;
+}
+.kelp-long {
+  margin-bottom: 12vh;
 }
 
 .obstacle {
@@ -121,7 +131,7 @@ body {
   top: 0vh;
 
   display: grid;
-  grid-template-rows: 50vh 50vh;
-  justify-content: space-between;
-  align-content: center;
+  /* grid-template-rows: 50vh 50vh; */
+  justify-content: center;
+  align-content: space-between;
 }
