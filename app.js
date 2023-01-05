@@ -2,6 +2,7 @@ import Player from "./Player.js";
 import Obstacle from "./Obstacle.js";
 import Constants from "./constants.js";
 import { renderObstacle } from "./render-utils.js";
+import Ground from "./Ground.js";
 
 const song = new Audio("./assets/Swimmy_Nudibranch_Theme.flac");
 song.volume = 0.9;
@@ -13,9 +14,7 @@ const dieSound = new Audio("./assets/Die.wav");
 const playerEl = document.getElementById("player");
 const playerImageEl = document.getElementById("player-image");
 const player = new Player(playerEl, playerImageEl);
-const ground = new Obstacle(document.getElementById("ground"));
-const octopus = new Obstacle(document.getElementById("octopus"));
-const kelp = new Obstacle(document.getElementById("kelp"));
+const ground = new Ground(document.getElementById("ground"));
 const gameWindow = document.getElementById("game-window");
 
 let gameStarted = false;
@@ -23,6 +22,7 @@ let lastTime = null;
 let jumpTimer = null;
 let keyPress = false;
 let action = "fall";
+let obstacles = [];
 // let kelpType = [];
 
 function update(time) {
@@ -32,8 +32,11 @@ function update(time) {
 
     if (gameStarted === true) {
       // Move Obstacles
-      kelp.move(delta);
-      octopus.move(delta);
+      if (obstacles) {
+        for (const obstacle of obstacles) {
+          obstacle.move(delta);
+        }
+      }
 
       // Move Player
       player.updateVelocity(delta, action);
@@ -42,8 +45,7 @@ function update(time) {
 
       // Check for collisions between player and obstacles
       checkCollisions(player.rect(), ground.rect());
-      checkCollisions(player.rect(), kelp.rect());
-      checkCollisions(player.rect(), octopus.rect());
+      checkCollisions(player.rect(), obstacles[0].rect());
 
       // Check for user inputs and update state accordingly
       if (action === "jump" || jumpTimer > 0) {
@@ -58,8 +60,8 @@ function update(time) {
 
 window.addEventListener("load", () => {
   /* COMMENT OUT TO STOP */
-  window.requestAnimationFrame(update);
   createObstacles();
+  window.requestAnimationFrame(update);
 });
 
 /* Call function on specific key press */
@@ -102,8 +104,7 @@ function stopGame() {
 
 function resetGame() {
   player.reset();
-  kelp.reset();
-  octopus.reset();
+  obstacles[0].reset();
 }
 
 function checkCollisions(rect1, rect2) {
@@ -121,6 +122,7 @@ function checkCollisions(rect1, rect2) {
 
 function createObstacles() {
   const randomType = "short";
-  const obstacleContainer = renderObstacle(randomType);
-  gameWindow.append(obstacleContainer);
+  const obstacleContainer = new Obstacle(renderObstacle(randomType));
+  gameWindow.append(obstacleContainer.el);
+  obstacles.push(obstacleContainer);
 }

@@ -1,8 +1,8 @@
 import Constants from "./constants.js";
 
-export default class Obstacle {
-  constructor(element) {
-    this.el = element;
+export default class Ground {
+  constructor(groundEl) {
+    this.el = groundEl;
     this.reset();
   }
 
@@ -21,10 +21,5 @@ export default class Obstacle {
   reset() {
     this.x = Constants.OBSTACLE_START_X_POS;
     this.velocity = Constants.OBSTACLE_VELOCITY;
-  }
-
-  move(delta) {
-    // Move to the left
-    this.x -= this.velocity * delta;
   }
 }

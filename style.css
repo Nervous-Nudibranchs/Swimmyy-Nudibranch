@@ -1,121 +1,127 @@
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 :root {
-    --foreground-color: rgb(202, 202, 202);
-    --background-color: rgb(60, 95, 130);
+  --foreground-color: rgb(202, 202, 202);
+  --background-color: rgb(60, 95, 130);
 }
 
 body {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    background-color: var(--background-color);
-    overflow: hidden;
-    image-rendering: pixelated;
+  background-color: var(--background-color);
+  overflow: hidden;
+  image-rendering: pixelated;
 
-    display: grid;
-    justify-content: center;
-    align-content: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .game-window {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    overflow: hidden;
-    height: 100vh;
-    width: 100vh;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vh;
 }
 
 .background-image {
-    height: 100vh;
-    width: 100vh;
+  height: 100vh;
+  width: 100vh;
 }
 
 .player {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    --y: 50;
+  --y: 50;
 
-    position: relative;
-    left: 20vh;
-    top: calc(var(--y) * 1vh);
+  position: relative;
+  left: 20vh;
+  top: calc(var(--y) * 1vh);
 
-    overflow: visible;
-    height: 5vh;
-    width: 10vh;
+  overflow: visible;
+  height: 5vh;
+  width: 10vh;
 
-    display: grid;
-    justify-content: center;
-    align-content: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .player-image {
-    --rotation: 50deg;
+  --rotation: 50deg;
 
-    width: 13vh;
-    transform: rotate(calc(var(--rotation) * 1deg));
-    transition: all 0.34s;
+  width: 13vh;
+  transform: rotate(calc(var(--rotation) * 1deg));
+  transition: all 0.34s;
 }
 
 .ground {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    --y: 90;
+  --y: 90;
 
-    position: absolute;
-    top: calc(var(--y) * 1vh);
-    height: 9.9vh;
-    width: 100vh;
+  position: absolute;
+  top: calc(var(--y) * 1vh);
+  height: 9.9vh;
+  width: 100vh;
 }
 
 .octopus {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    --x: 50;
+  overflow: visible;
+  height: 42vh;
+  width: 10vh;
 
-    overflow: visible;
-    height: 42vh;
-    width: 10vh;
-
-    position: relative;
-    left: calc(var(--x) * 1vh);
-    top: -106vh;
-
-    display: grid;
-    justify-content: center;
-    align-content: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .octopus-image {
-    width: 15vh;
+  width: 15vh;
 }
 
 .kelp {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 
-    --x: 50;
+  overflow: visible;
+  height: 24vh;
+  width: 10vh;
 
-    overflow: visible;
-    height: 24vh;
-    width: 10vh;
-
-    position: relative;
-    left: calc(var(--x) * 1vh);
-    top: -80vh;
-
-    display: grid;
-    justify-content: center;
-    align-content: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .kelp-image {
-    width: 15vh;
+  width: 15vh;
 }
 
 .kelp-med {
-    margin-top: -6vh;
+  margin-top: -6vh;
+}
+
+.obstacle {
+  border: 1px solid red;
+
+  --x: 50;
+
+  height: 100vh;
+  width: 10vh;
+
+  position: absolute;
+  left: calc(var(--x) * 1vh);
+  top: 0vh;
+
+  display: grid;
+  grid-template-rows: 50vh 50vh;
+  justify-content: space-between;
+  align-content: center;
 }

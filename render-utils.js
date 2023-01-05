@@ -2,6 +2,7 @@ import Constants from "./Constants.js";
 
 export function renderObstacle(kelpType) {
   const obstacleContainer = document.createElement("div");
+  obstacleContainer.classList.add("obstacle");
 
   const octopus = document.createElement("div");
   octopus.classList.add("octopus");
