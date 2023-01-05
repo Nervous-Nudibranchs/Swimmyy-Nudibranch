@@ -7,6 +7,7 @@ export default {
   OBSTACLE_VELOCITY: 0.026,
   OBSTACLE_START_X_POS: 170,
   GRAVITY_ACCELERATION: 0.00008,
+  CREATE_OBSTACLE_DELAY: 150,
   // GRAVITY_ACCELERATION: 0, // FIXME delete
   OCTOPUS_LONG_URL: "./assets/octopus-long.png",
   OCTOPUS_MEDIUM_URL: "./assets/octopus-med.png",

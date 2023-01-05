@@ -23,6 +23,7 @@ let jumpTimer = null;
 let keyPress = false;
 let action = "fall";
 let obstacles = [];
+let createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
 // let kelpType = [];
 
 function update(time) {
@@ -44,17 +45,21 @@ function update(time) {
       player.updateRotation();
 
       // Check for collisions between player and obstacles
-      checkCollisions(player.rect(), ground.rect());
-      for (const obstacle of obstacles) {
-        const boundaries = obstacle.rect();
-        checkCollisions(player.rect(), boundaries.kelp);
-        checkCollisions(player.rect(), boundaries.octopus);
-      }
+      //   checkCollisions(player.rect(), ground.rect());
+      //   for (const obstacle of obstacles) {
+      //     const boundaries = obstacle.rect();
+      //     checkCollisions(player.rect(), boundaries.kelp);
+      //     checkCollisions(player.rect(), boundaries.octopus);
+      //   }
 
       // Check for user inputs and update state accordingly
       if (action === "jump" || jumpTimer > 0) {
         action = "fall";
         jumpTimer -= 1;
+      }
+      createObstacleDelay -= 1;
+      if (createObstacleDelay === 0) {
+        createObstacles();
       }
     }
   }
@@ -108,7 +113,10 @@ function stopGame() {
 
 function resetGame() {
   player.reset();
-  obstacles[0].reset();
+  for (const obstacle of obstacles) {
+    obstacle.reset();
+  }
+  createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
 }
 
 function checkCollisions(rect1, rect2) {
