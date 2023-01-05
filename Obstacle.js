@@ -1,35 +1,30 @@
 import Constants from "./constants.js";
 
 export default class Obstacle {
-  constructor(element) {
-    this.el = element;
-    this.reset();
-  }
+    constructor(element) {
+        this.el = element;
+        this.x = Constants.OBSTACLE_START_X_POS;
+        this.velocity = Constants.OBSTACLE_VELOCITY;
+    }
 
-  get x() {
-    return parseFloat(getComputedStyle(this.el).getPropertyValue("--x"));
-  }
+    get x() {
+        return parseFloat(getComputedStyle(this.el).getPropertyValue("--x"));
+    }
 
-  set x(value) {
-    this.el.style.setProperty("--x", value);
-  }
+    set x(value) {
+        this.el.style.setProperty("--x", value);
+    }
 
-  rect() {
-    const boundaries = {
-      octopus: this.el.querySelector("#octopus").getBoundingClientRect(),
-      kelp: this.el.querySelector("#kelp").getBoundingClientRect(),
-    };
-    console.log(boundaries);
-    return boundaries;
-  }
+    rect() {
+        const boundaries = {
+            octopus: this.el.querySelector("#octopus").getBoundingClientRect(),
+            kelp: this.el.querySelector("#kelp").getBoundingClientRect(),
+        };
+        return boundaries;
+    }
 
-  reset() {
-    this.x = Constants.OBSTACLE_START_X_POS;
-    this.velocity = Constants.OBSTACLE_VELOCITY;
-  }
-
-  move(delta) {
-    // Move to the left
-    this.x -= this.velocity * delta;
-  }
+    move(delta) {
+        // Move to the left
+        this.x -= this.velocity * delta;
+    }
 }
