@@ -15,7 +15,12 @@ export default class Obstacle {
   }
 
   rect() {
-    return this.el.getBoundingClientRect();
+    const boundaries = {
+      octopus: this.el.querySelector("#octopus").getBoundingClientRect(),
+      kelp: this.el.querySelector("#kelp").getBoundingClientRect(),
+    };
+    console.log(boundaries);
+    return boundaries;
   }
 
   reset() {

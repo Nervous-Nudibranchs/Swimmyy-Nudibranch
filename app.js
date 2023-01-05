@@ -45,7 +45,11 @@ function update(time) {
 
       // Check for collisions between player and obstacles
       checkCollisions(player.rect(), ground.rect());
-      checkCollisions(player.rect(), obstacles[0].rect());
+      for (const obstacle of obstacles) {
+        const boundaries = obstacle.rect();
+        checkCollisions(player.rect(), boundaries.kelp);
+        checkCollisions(player.rect(), boundaries.octopus);
+      }
 
       // Check for user inputs and update state accordingly
       if (action === "jump" || jumpTimer > 0) {
@@ -121,7 +125,7 @@ function checkCollisions(rect1, rect2) {
 }
 
 function createObstacles() {
-  const randomType = "long";
+  const randomType = "short";
   const obstacleContainer = new Obstacle(renderObstacle(randomType));
   gameWindow.append(obstacleContainer.el);
   obstacles.push(obstacleContainer);
