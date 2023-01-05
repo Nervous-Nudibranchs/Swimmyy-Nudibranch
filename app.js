@@ -119,6 +119,7 @@ function resetGame() {
     }
     obstacles = [];
     createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
+    createObstacles();
 }
 
 function checkCollisions(rect1, rect2) {
