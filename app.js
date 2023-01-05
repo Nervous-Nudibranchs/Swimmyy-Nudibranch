@@ -16,6 +16,7 @@ const ground = new Obstacle(document.getElementById("ground"));
 const octopus = new Obstacle(document.getElementById("octopus"));
 const kelp = new Obstacle(document.getElementById("kelp"));
 
+let gameStarted = false;
 let lastTime = null;
 let jumpTimer = null;
 let keyPress = false;
@@ -26,24 +27,26 @@ function update(time) {
         // Update time interval
         const delta = time - lastTime;
 
-        // Move Obstacles
-        kelp.move(delta);
-        octopus.move(delta);
+        if (gameStarted === true) {
+            // Move Obstacles
+            kelp.move(delta);
+            octopus.move(delta);
 
-        // Move Player
-        player.updateVelocity(delta, action);
-        player.move(delta);
-        player.updateRotation();
+            // Move Player
+            player.updateVelocity(delta, action);
+            player.move(delta);
+            player.updateRotation();
 
-        // Check for collisions between player and obstacles
-        checkCollisions(player.rect(), ground.rect());
-        checkCollisions(player.rect(), kelp.rect());
-        checkCollisions(player.rect(), octopus.rect());
+            // Check for collisions between player and obstacles
+            checkCollisions(player.rect(), ground.rect());
+            checkCollisions(player.rect(), kelp.rect());
+            checkCollisions(player.rect(), octopus.rect());
 
-        // Check for user inputs and update state accordingly
-        if (action === "jump" || jumpTimer > 0) {
-            action = "fall";
-            jumpTimer -= 1;
+            // Check for user inputs and update state accordingly
+            if (action === "jump" || jumpTimer > 0) {
+                action = "fall";
+                jumpTimer -= 1;
+            }
         }
     }
     lastTime = time;
@@ -60,11 +63,18 @@ document.addEventListener("keydown", (e) => {
     song.play();
     if (e.key === " ") {
         console.log("Space Key pressed!");
-        if (!jumpTimer && keyPress === false) {
+        if (gameStarted === false) {
+            startGame();
+        } else if (!jumpTimer && keyPress === false) {
             jumpTimer = 10;
             action = "jump";
             keyPress = true;
             flapSound.play();
+        }
+    } else if (e.key === "Escape") {
+        console.log("Escape Key pressed!");
+        if (gameStarted === true) {
+            stopGame();
         }
     }
 });
@@ -75,6 +85,22 @@ document.addEventListener("keyup", (e) => {
         keyPress = false;
     }
 });
+
+function startGame() {
+    song.volume = 0.9;
+    gameStarted = true;
+}
+
+function stopGame() {
+    song.volume = 0.3;
+    gameStarted = false;
+}
+
+function resetGame() {
+    player.reset();
+    kelp.reset();
+    octopus.reset();
+}
 
 function checkCollisions(rect1, rect2) {
     if (
@@ -87,10 +113,4 @@ function checkCollisions(rect1, rect2) {
         dieSound.play();
         resetGame();
     }
-}
-
-function resetGame() {
-    player.reset();
-    kelp.reset();
-    octopus.reset();
 }
