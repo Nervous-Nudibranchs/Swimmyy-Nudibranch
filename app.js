@@ -57,8 +57,10 @@ function update(time) {
                 action = "fall";
                 jumpTimer -= 1;
             }
+            console.log(createObstacleDelay);
             createObstacleDelay -= 1;
             if (createObstacleDelay === 0) {
+                console.log("Creating obstacle");
                 createObstacles();
             }
         }
@@ -116,8 +118,6 @@ function resetGame() {
     for (const obstacle of obstacles) {
         obstacle.el.remove();
     }
-    // const thing = gameWindow.querySelectorAll(".obstacle");
-    // console.log("thing: ", thing);
     obstacles = [];
     createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
 }
@@ -136,6 +136,7 @@ function checkCollisions(rect1, rect2) {
 }
 
 function createObstacles() {
+    createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
     const randomType = "short";
     const obstacleContainer = new Obstacle(renderObstacle(randomType));
     gameWindow.append(obstacleContainer.el);
