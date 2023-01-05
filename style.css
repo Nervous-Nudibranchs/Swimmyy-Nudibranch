@@ -20,14 +20,17 @@ body {
 }
 
 .player {
+    /* border: 1px solid red; */
+
     --y: 50;
 
     position: absolute;
-    /* background-color: var(--foreground-color); */
     left: 20vw;
     top: calc(var(--y) * 1vh);
-    border-radius: 15%;
+
+    overflow: visible;
     height: 5vh;
+    width: 100px;
 
     display: grid;
     justify-content: center;
@@ -37,16 +40,17 @@ body {
 .player-image {
     --rotation: 50deg;
 
-    width: 10vw;
-    transform: rotate(var(--rotation));
+    width: 13vw;
+    transform: rotate(calc(var(--rotation) * 1deg));
     transition: all 0.34s;
 }
 
 .ground {
-    --y: 92;
+    /* border: 1px solid red; */
+
+    --y: 91.5;
 
     position: absolute;
-    background-color: var(--foreground-color);
     top: calc(var(--y) * 1vh);
     height: 8.5vh;
     width: 100vw;
@@ -57,14 +61,21 @@ body {
 
     --x: 50;
 
+    overflow: visible;
+    height: 370px;
+    width: 130px;
+
     position: absolute;
     left: calc(var(--x) * 1vw);
-    top: -5vh;
-    border-radius: 15%;
+    top: -2vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
 }
 
 .octopus-image {
-    width: 15vw;
+    width: 14vw;
 }
 
 .kelp {
@@ -72,16 +83,23 @@ body {
 
     --x: 50;
 
+    overflow: visible;
+    height: 250px;
+    width: 130px;
+
     position: absolute;
     left: calc(var(--x) * 1vw);
-    top: 64vh;
-    border-radius: 15%;
+    top: 67vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
 }
 
 .kelp-image {
-    width: 18vw;
+    width: 16vw;
 }
 
-.kelp-medium {
-    margin-top: -64px;
+.kelp-med {
+    margin-top: -60px;
 }

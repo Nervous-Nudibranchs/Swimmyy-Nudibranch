@@ -37,17 +37,8 @@ export default class Player {
         this.velocity = constants.INITIAL_VELOCITY;
     }
 
-    update(delta, action, ground, kelp, octopus) {
-        this.updateVelocity(delta, action);
-        this.updateRotation();
-        this.checkCollisions(ground);
-        this.checkCollisions(kelp);
-        this.checkCollisions(octopus);
-        this.move(delta, this.velocity);
-    }
-
-    move(delta, velocity) {
-        this.y += velocity * delta;
+    move(delta) {
+        this.y += this.velocity * delta;
     }
 
     updateVelocity(delta, action) {
@@ -55,33 +46,18 @@ export default class Player {
             this.velocity = constants.JUMP_VELOCITY;
         }
         if (this.velocity < constants.MAX_VELOCITY) {
-            this.velocity += constants.ACCELERATION * delta;
+            this.velocity += constants.GRAVITY_ACCELERATION * delta;
         }
     }
 
     updateRotation() {
         // Rotation based on velocity
         if (this.velocity > 0) {
-            this.rotation = "50deg";
+            this.rotation = 50;
         } else if (this.velocity == 0) {
-            this.rotation = "0deg";
+            this.rotation = 0;
         } else if (this.velocity < 0) {
-            this.rotation = "-50deg";
-        }
-    }
-
-    checkCollisions(obstacle) {
-        const playerRect = this.rect();
-        const obstacleRect = obstacle.rect();
-
-        if (
-            playerRect.right > obstacleRect.left &&
-            playerRect.left < obstacleRect.right &&
-            playerRect.top < obstacleRect.bottom &&
-            playerRect.bottom > obstacleRect.top
-        ) {
-            console.log("collision");
-            this.reset();
+            this.rotation = -50;
         }
     }
 }
