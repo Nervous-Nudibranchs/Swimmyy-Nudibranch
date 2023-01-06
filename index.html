@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            rel="stylesheet" />
+
+        <script src="app.js" type="module"></script>
+        <title>Swimmy Nudibranch</title>
+    </head>
+    <body>
+        <img src="./assets/pause.png" class="pause hidden" id="pause" />
+        <div class="score-board" id="score-board">
+            <div class="score-container">
+                <!-- <div class="best-score-text" id="best-score-text">Best:</div>
+                <div class="best-score" id="best-score">0</div> -->
+                <img src="./assets/starfish-coin.png" class="score-coin" />
+                <div class="score" id="score">0</div>
+            </div>
+            <button class="sound-btn" id="sound-btn">
+                <img
+                    class="sound-btn-image"
+                    id="sound-btn-image"
+                    src="./assets/speaker-on.png" />
+            </button>
+        </div>
+        <div class="game-window" id="game-window">
+            <img
+                src="./assets/background.png"
+                class="background-image"
+                id="background-image" />
+            <div class="ground" id="ground">
+                <img
+                    src="./assets/ground.png"
+                    class="ground-image"
+                    id="ground-image" />
+            </div>
+            <div class="player" id="player">
+                <img
+                    src="./assets/nudibranch.png "
+                    alt="nudibranch"
+                    id="player-image"
+                    class="player-image" />
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,256 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --foreground-color: rgb(202, 202, 202);
+    --background-color: rgb(60, 95, 130);
+    font-family: "VT323", monospace;
+}
+
+body {
+    /* border: 1px solid red; */
+
+    background-color: var(--background-color);
+    overflow: hidden;
+    image-rendering: pixelated;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.game-window {
+    /* border: 1px solid red; */
+
+    overflow: hidden;
+    height: 100vh;
+    width: 100vh;
+}
+
+.background-image {
+    position: absolute;
+
+    --x: 0;
+
+    left: calc(var(--x) * 1vh);
+
+    height: 90vh;
+    width: 300vh;
+}
+
+.ground {
+    color: transparent;
+    position: absolute;
+
+    --x: 0;
+
+    top: 90vh;
+    left: calc(var(--x) * 1vh);
+
+    height: 10vh;
+    width: 300vh;
+}
+
+.ground-image {
+    height: 10vh;
+    width: 300vh;
+}
+
+.score-board {
+    z-index: 1;
+    /* border: 1px solid red; */
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    left: 0vh;
+    top: 0vh;
+    font-size: 8vh;
+    width: 100vw;
+    height: 8vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.best-score-container {
+    display: flex;
+    align-items: center;
+    margin-top: 1vh;
+    margin-left: 6vw;
+    font-size: 2rem;
+}
+
+.best-score-text {
+}
+
+.score-container {
+    margin-left: 6vw;
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    margin-left: 1vw;
+}
+
+.score-coin {
+    width: 6vh;
+    height: 6vh;
+}
+
+.sound-btn {
+    outline: none;
+    border: none;
+    /* border: 1px solid red; */
+    cursor: pointer;
+
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0);
+    width: 6vh;
+    height: 6vh;
+
+    margin-right: 2vw;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.sound-btn-image {
+    color: white;
+    width: 7vh;
+}
+
+.player {
+    /* border: 1px solid red; */
+
+    --y: 50;
+
+    z-index: 1;
+    position: absolute;
+    left: 25vh;
+    top: calc(var(--y) * 1vh);
+
+    overflow: visible;
+    height: 6vh;
+    width: 10vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.player-image {
+    --rotation: 50deg;
+
+    width: 13vh;
+    transform: rotate(calc(var(--rotation) * 1deg));
+    transition: all 0.34s;
+}
+
+.octopus {
+    /* border: 1px solid red; */
+
+    overflow: visible;
+    width: 10vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.octopus-short {
+    height: 14vh;
+}
+
+.octopus-med {
+    height: 33vh;
+    margin-top: -2vh;
+}
+
+.octopus-long {
+    height: 43vh;
+    margin-top: -2vh;
+}
+
+.octopus-image {
+    width: 15vh;
+}
+
+.kelp {
+    /* border: 1px solid red; */
+
+    margin-bottom: -2vh;
+    overflow: visible;
+    width: 8vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: flex-end;
+}
+
+.kelp-image {
+    /* display: none; */
+    width: 15vh;
+}
+
+.kelp-short {
+    height: 14vh;
+}
+.kelp-med {
+    height: 23vh;
+}
+.kelp-long {
+    margin-bottom: -2.45vh;
+    height: 36vh;
+}
+
+.obstacle {
+    /* border: 1px solid red; */
+
+    --x: 50;
+
+    height: 90vh;
+    width: 8vh;
+
+    position: absolute;
+    left: calc(var(--x) * 1vh);
+    top: 0vh;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-content: space-between;
+}
+
+.coin-container {
+    /* border: 1px solid red; */
+
+    height: 8vh;
+    width: 8vh;
+}
+
+.coin-img {
+    /* border: 1px solid red; */
+    height: 8vh;
+    width: 8vh;
+}
+
+.pause {
+    z-index: 1;
+    /* border: 1px solid red; */
+
+    position: fixed;
+    left: 40vh;
+    top: 40vh;
+    width: 12vh;
+}
+
+.hidden {
+    display: none;
+}
