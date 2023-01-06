@@ -24,6 +24,10 @@ export default class Obstacle {
         return bounds;
     }
 
+    coinBounds() {
+        return this.el.querySelector("#coin-container").getBoundingClientRect();
+    }
+
     containerBounds() {
         return this.el.getBoundingClientRect();
     }

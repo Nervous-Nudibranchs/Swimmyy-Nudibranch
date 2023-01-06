@@ -215,6 +215,19 @@ body {
     align-content: space-between;
 }
 
+.coin-container {
+    /* border: 1px solid red; */
+
+    height: 8vh;
+    width: 8vh;
+}
+
+.coin-img {
+    /* border: 1px solid red; */
+    height: 8vh;
+    width: 8vh;
+}
+
 .pause {
     z-index: 1;
     /* border: 1px solid red; */

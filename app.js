@@ -26,6 +26,7 @@ const soundBtn = document.getElementById("sound-btn");
 const soundBtnImg = document.getElementById("sound-btn-image");
 const pauseIcon = document.getElementById("pause");
 
+let frameTick = 0;
 let score = 0;
 let gameStarted = false;
 let soundOn = true;
@@ -44,6 +45,8 @@ function update(time) {
         const delta = time - lastTime;
 
         if (gameStarted === true) {
+            frameTick++;
+
             // Move Player
             player.updateVelocity(delta, action);
             player.move(delta);
@@ -80,7 +83,7 @@ function update(time) {
             // Check for collisions between player and obstacles
             if (!obsCollision) {
                 for (const obstacle of obstacles) {
-                    const containerBounds = obstacle.containerBounds();
+                    const coinBounds = obstacle.coinBounds();
                     const kelpBounds = obstacle.obstacleBounds().kelp;
                     const octopusBounds = obstacle.obstacleBounds().octopus;
                     if (
@@ -96,12 +99,11 @@ function update(time) {
                     if (
                         !obsCollision &&
                         obstacle.passed === false &&
-                        checkCollisions(
-                            playerBounds,
-                            containerBounds,
-                            "addScore"
-                        )
+                        checkCollisions(playerBounds, coinBounds, "addScore")
                     ) {
+                        obstacle.el
+                            .querySelector("#coin-container")
+                            .classList.add("hidden");
                         playSound(coinSound);
                         score++;
                         obstacle.passed = true;

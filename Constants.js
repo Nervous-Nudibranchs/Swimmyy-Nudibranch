@@ -23,4 +23,5 @@ export default {
     KELP_LONG_CLASS: "kelp-long",
     KELP_MEDIUM_CLASS: "kelp-med",
     KELP_SHORT_CLASS: "kelp-short",
+    COIN_URL: "./assets/starfish-coin.png",
 };

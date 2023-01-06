@@ -35,9 +35,17 @@ export function renderObstacle(kelpType) {
         kelp.classList.add(Constants.KELP_LONG_CLASS);
     }
 
+    const coinContainer = document.createElement("div");
+    coinContainer.classList.add("coin-container");
+    coinContainer.setAttribute("id", "coin-container");
+    const coinImg = document.createElement("img");
+    coinImg.classList.add("coin-img");
+    coinImg.src = Constants.COIN_URL;
+
+    coinContainer.append(coinImg);
     octopus.append(octopusImg);
     kelp.append(kelpImg);
-    obstacleContainer.append(octopus, kelp);
+    obstacleContainer.append(octopus, coinContainer, kelp);
 
     return obstacleContainer;
 }
