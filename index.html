@@ -5,17 +5,27 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            rel="stylesheet" />
+
         <script src="app.js" type="module"></script>
         <title>Swimmy Nudibranch</title>
     </head>
     <body>
-        <h2 class="score" id="score">0</h2>
-        <!-- <button class="sound-btn" id="sound-btn">
-            <img
-                class="sound-btn-image"
-                id="sound-btn-image"
-                src="./assets/volume.png" />
-        </button> -->
+        <div class="score-board" id="score-board">
+            <img src="./assets/starfish-coin.png" class="score-coin" />
+            <div class="score" id="score">0</div>
+            <button class="sound-btn" id="sound-btn">
+                <img
+                    class="sound-btn-image"
+                    id="sound-btn-image"
+                    src="./assets/speaker-on.png" />
+            </button>
+        </div>
         <div class="game-window" id="game-window">
             <img
                 src="./assets/background.png"

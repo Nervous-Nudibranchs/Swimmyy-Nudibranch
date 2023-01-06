@@ -10,6 +10,7 @@ song.loop = true;
 const flapSound = new Audio("./assets/Flap.wav");
 flapSound.volume = 0.9;
 const dieSound = new Audio("./assets/Die.wav");
+const coinSound = new Audio("./assets/coin.wav");
 
 const playerEl = document.getElementById("player");
 const playerImageEl = document.getElementById("player-image");
@@ -17,9 +18,12 @@ const player = new Player(playerEl, playerImageEl);
 const ground = new Ground(document.getElementById("ground"));
 const gameWindow = document.getElementById("game-window");
 const scoreEl = document.getElementById("score");
+const soundBtn = document.getElementById("sound-btn");
+const soundBtnImg = document.getElementById("sound-btn-image");
 
 let score = 0;
 let gameStarted = false;
+let soundOn = true;
 let lastTime = null;
 let jumpTimer = null;
 let keyPress = false;
@@ -52,7 +56,7 @@ function update(time) {
             let obsCollision = false;
             if (checkCollisions(playerBounds, ground.rect(), "obstacle")) {
                 obsCollision = true;
-                dieSound.play();
+                playSound(dieSound);
                 resetGame();
             }
 
@@ -67,7 +71,7 @@ function update(time) {
                         checkCollisions(playerBounds, octopusBounds, "obstacle")
                     ) {
                         obsCollision = true;
-                        dieSound.play();
+                        playSound(dieSound);
                         resetGame();
                     }
 
@@ -81,6 +85,7 @@ function update(time) {
                             "addScore"
                         )
                     ) {
+                        playSound(coinSound);
                         score++;
                         obstacle.passed = true;
                     }
@@ -99,6 +104,7 @@ function update(time) {
             }
         }
     }
+    playSound(song);
     displayScore();
     lastTime = time;
     window.requestAnimationFrame(update);
@@ -112,7 +118,6 @@ window.addEventListener("load", () => {
 
 /* Call function on specific key press */
 document.addEventListener("keydown", (e) => {
-    song.play();
     if (e.key === " ") {
         console.log("Space Key pressed!");
         if (gameStarted === false) {
@@ -121,12 +126,14 @@ document.addEventListener("keydown", (e) => {
             jumpTimer = 10;
             action = "jump";
             keyPress = true;
-            flapSound.play();
+            playSound(flapSound);
         }
     } else if (e.key === "Escape") {
         console.log("Escape Key pressed!");
         if (gameStarted === true) {
             stopGame();
+        } else {
+            startGame();
         }
     }
 });
@@ -136,6 +143,19 @@ document.addEventListener("keyup", (e) => {
         console.log("Space Key unpressed!");
         keyPress = false;
     }
+});
+
+soundBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    soundBtn.blur();
+    if (soundOn) {
+        soundBtnImg.src = "./assets/speaker-off.png";
+        soundOn = false;
+    } else {
+        soundBtnImg.src = "./assets/speaker-on.png";
+        soundOn = true;
+    }
+    console.log("soundOn: ", soundOn);
 });
 
 function startGame() {
@@ -152,6 +172,11 @@ function displayScore() {
     scoreEl.textContent = score;
 }
 
+function playSound(sound) {
+    if (!soundOn) sound.pause();
+    else sound.play();
+}
+
 function resetGame() {
     score = 0;
     player.reset();
@@ -163,7 +188,7 @@ function resetGame() {
     createObstacles();
 }
 
-function checkCollisions(rect1, rect2, type) {
+function checkCollisions(rect1, rect2) {
     return (
         rect1.right > rect2.left &&
         rect1.left < rect2.right &&

@@ -8,6 +8,7 @@
 :root {
     --foreground-color: rgb(202, 202, 202);
     --background-color: rgb(60, 95, 130);
+    font-family: "VT323", monospace;
 }
 
 body {
@@ -35,13 +36,27 @@ body {
     width: 100vh;
 }
 
-.score {
+.score-board {
+    /* border: 1px solid red; */
     z-index: 1;
     color: white;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
-    left: 50vw;
     font-size: 8vh;
+    width: 100vh;
+
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    margin-left: 1vh;
+}
+
+.score-coin {
+    width: 6vh;
+    height: 6vh;
+    margin-left: 6vh;
 }
 
 .sound-btn {
@@ -52,12 +67,10 @@ body {
 
     z-index: 1;
     background-color: rgba(0, 0, 0, 0);
-    position: absolute;
     width: 6vh;
     height: 6vh;
 
-    left: 40vw;
-    top: 2vw;
+    margin-left: 60vh;
 
     display: grid;
     justify-content: center;
@@ -65,7 +78,8 @@ body {
 }
 
 .sound-btn-image {
-    width: 5vh;
+    color: white;
+    width: 7vh;
 }
 
 .player {
