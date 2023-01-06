@@ -48,6 +48,8 @@ function update(time) {
 
         if (gameStarted === true) {
             frameTick++;
+
+            // Set game mode based on frameTick
             if (frameTick < Constants.EASY_MODE_TICKS) {
                 gameMode = gameModes[0];
             } else if (frameTick < Constants.MED_MODE_TICKS) {
@@ -125,8 +127,7 @@ function update(time) {
                     jumpTimer -= 1;
                 }
 
-                console.log(frameTick);
-                console.log(gameMode);
+                // Create Obstacle
                 createObstacleDelay -= 1;
                 if (createObstacleDelay <= 0) {
                     console.log("Creating obstacle");
@@ -211,6 +212,8 @@ function playSound(sound) {
 }
 
 function resetGame() {
+    console.log("YOU DIED");
+    gameMode = gameModes[0];
     frameTick = 0;
     score = 0;
     player.reset();
@@ -231,6 +234,7 @@ function checkCollisions(rect1, rect2) {
 }
 
 function createObstacles() {
+    console.log("gameMode: ", gameMode);
     const randomNumber = Math.floor(Math.random() * kelpTypes.length);
     const randomType = kelpTypes[randomNumber];
     console.log(`Generating a ${randomType} kelp:`);
