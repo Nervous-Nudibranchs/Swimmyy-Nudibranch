@@ -126,7 +126,7 @@ body {
     top: calc(var(--y) * 1vh);
 
     overflow: visible;
-    height: 5vh;
+    height: 6vh;
     width: 10vh;
 
     display: grid;
@@ -150,20 +150,20 @@ body {
 
     display: grid;
     justify-content: center;
-    align-content: center;
+    align-content: flex-start;
 }
 
 .octopus-short {
-    margin-top: -2vh;
-    height: 16vh;
+    height: 14vh;
 }
 
 .octopus-med {
-    height: 29vh;
-    margin-top: 6vh;
+    height: 33vh;
+    margin-top: -2vh;
 }
 
 .octopus-long {
+    height: 43vh;
     margin-top: -2vh;
 }
 
@@ -174,28 +174,29 @@ body {
 .kelp {
     /* border: 1px solid red; */
 
+    margin-bottom: -2vh;
     overflow: visible;
-    width: 10vh;
+    width: 8vh;
 
     display: grid;
     justify-content: center;
-    align-content: center;
+    align-content: flex-end;
 }
 
 .kelp-image {
+    /* display: none; */
     width: 15vh;
 }
 
 .kelp-short {
-    margin-bottom: -2vh;
+    height: 14vh;
 }
 .kelp-med {
-    margin-bottom: 1vh;
-    height: 22vh;
+    height: 23vh;
 }
 .kelp-long {
-    margin-bottom: 2.5vh;
-    height: 35vh;
+    margin-bottom: -2.45vh;
+    height: 36vh;
 }
 
 .obstacle {
@@ -204,7 +205,7 @@ body {
     --x: 50;
 
     height: 90vh;
-    width: 10vh;
+    width: 8vh;
 
     position: absolute;
     left: calc(var(--x) * 1vh);
@@ -212,6 +213,7 @@ body {
 
     display: grid;
     justify-content: center;
+    justify-items: center;
     align-content: space-between;
 }
 
