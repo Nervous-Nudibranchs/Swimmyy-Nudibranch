@@ -77,10 +77,21 @@ body {
     justify-content: space-between;
 }
 
-.score-container {
+.best-score-container {
     display: flex;
     align-items: center;
+    margin-top: 1vh;
     margin-left: 6vw;
+    font-size: 2rem;
+}
+
+.best-score-text {
+}
+
+.score-container {
+    margin-left: 6vw;
+    display: flex;
+    align-items: center;
 }
 
 .score {
