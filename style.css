@@ -32,13 +32,18 @@ body {
 }
 
 .background-image {
+    position: absolute;
+
+    --x: -100;
+
+    left: calc(var(--x) * 1vh);
+
     height: 100vh;
-    width: 100vh;
+    width: 300vh;
 }
 
 .score-board {
     /* border: 1px solid red; */
-    z-index: 1;
     color: white;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
@@ -87,8 +92,9 @@ body {
 
     --y: 50;
 
-    position: relative;
-    left: 20vh;
+    z-index: 1;
+    position: absolute;
+    left: 40vh;
     top: calc(var(--y) * 1vh);
 
     overflow: visible;
@@ -137,7 +143,7 @@ body {
 
 .octopus-med {
     height: 29vh;
-    margin-top: 7.5vh;
+    margin-top: 6vh;
 }
 
 .octopus-long {
@@ -200,6 +206,7 @@ body {
     top: 40vh;
     width: 12vh;
 }
+
 .hidden {
     display: none;
 }

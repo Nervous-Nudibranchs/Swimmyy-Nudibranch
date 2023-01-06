@@ -3,6 +3,7 @@ import Obstacle from "./Obstacle.js";
 import Constants from "./constants.js";
 import { renderObstacle } from "./render-utils.js";
 import Ground from "./Ground.js";
+import Background from "./background.js";
 
 const song = new Audio("./assets/Swimmy_Nudibranch_Theme.flac");
 song.volume = 0.9;
@@ -15,6 +16,9 @@ const coinSound = new Audio("./assets/coin.wav");
 const playerEl = document.getElementById("player");
 const playerImageEl = document.getElementById("player-image");
 const player = new Player(playerEl, playerImageEl);
+const backgroundImg = new Background(
+    document.getElementById("background-image")
+);
 const ground = new Ground(document.getElementById("ground"));
 const gameWindow = document.getElementById("game-window");
 const scoreEl = document.getElementById("score");
@@ -40,6 +44,11 @@ function update(time) {
         const delta = time - lastTime;
 
         if (gameStarted === true) {
+            // Move Player
+            player.updateVelocity(delta, action);
+            player.move(delta);
+            player.updateRotation();
+
             // Move Obstacles
             if (obstacles) {
                 for (const obstacle of obstacles) {
@@ -47,10 +56,11 @@ function update(time) {
                 }
             }
 
-            // Move Player
-            player.updateVelocity(delta, action);
-            player.move(delta);
-            player.updateRotation();
+            // Move background
+            if (backgroundImg.x < -200) {
+                backgroundImg.x = -100;
+            }
+            backgroundImg.move(delta);
 
             // Check for collisions between player and ground
             const playerBounds = player.rect();
