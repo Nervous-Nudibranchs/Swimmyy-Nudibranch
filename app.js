@@ -51,9 +51,9 @@ function update(time) {
             const playerBounds = player.rect();
             let obsCollision = false;
             if (checkCollisions(playerBounds, ground.rect(), "obstacle")) {
+                obsCollision = true;
                 dieSound.play();
                 resetGame();
-                obsCollision = true;
             }
 
             // Check for collisions between player and obstacles
@@ -66,9 +66,9 @@ function update(time) {
                         checkCollisions(playerBounds, kelpBounds, "obstacle") ||
                         checkCollisions(playerBounds, octopusBounds, "obstacle")
                     ) {
+                        obsCollision = true;
                         dieSound.play();
                         resetGame();
-                        obsCollision = true;
                     }
 
                     // Check if current obstacle isn't passed && score it

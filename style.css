@@ -38,11 +38,34 @@ body {
 .score {
     z-index: 1;
     color: white;
-    display: inline;
-    background-color: none;
+    background-color: rgba(0, 0, 0, 0);
     position: absolute;
     left: 50vw;
     font-size: 8vh;
+}
+
+.sound-btn {
+    outline: none;
+    border: none;
+    /* border: 1px solid red; */
+    cursor: pointer;
+
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    width: 6vh;
+    height: 6vh;
+
+    left: 40vw;
+    top: 2vw;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.sound-btn-image {
+    width: 5vh;
 }
 
 .player {
