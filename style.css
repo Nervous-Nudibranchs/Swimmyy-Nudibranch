@@ -216,9 +216,10 @@ body {
 }
 
 .pause {
+    z-index: 1;
     /* border: 1px solid red; */
 
-    position: absolute;
+    position: fixed;
     left: 40vh;
     top: 40vh;
     width: 12vh;
