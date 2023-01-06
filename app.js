@@ -20,6 +20,7 @@ const gameWindow = document.getElementById("game-window");
 const scoreEl = document.getElementById("score");
 const soundBtn = document.getElementById("sound-btn");
 const soundBtnImg = document.getElementById("sound-btn-image");
+const pauseIcon = document.getElementById("pause");
 
 let score = 0;
 let gameStarted = false;
@@ -159,11 +160,13 @@ soundBtn.addEventListener("click", (e) => {
 });
 
 function startGame() {
+    pauseIcon.classList.add("hidden");
     song.volume = 0.9;
     gameStarted = true;
 }
 
 function stopGame() {
+    pauseIcon.classList.remove("hidden");
     song.volume = 0.3;
     gameStarted = false;
 }

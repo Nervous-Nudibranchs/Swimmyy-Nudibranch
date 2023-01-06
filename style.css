@@ -191,3 +191,15 @@ body {
     justify-content: center;
     align-content: space-between;
 }
+
+.pause {
+    /* border: 1px solid red; */
+
+    position: absolute;
+    left: 40vh;
+    top: 40vh;
+    width: 12vh;
+}
+.hidden {
+    display: none;
+}
