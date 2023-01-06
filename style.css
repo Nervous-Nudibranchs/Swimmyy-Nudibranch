@@ -38,7 +38,25 @@ body {
 
     left: calc(var(--x) * 1vh);
 
-    height: 100vh;
+    height: 90vh;
+    width: 300vh;
+}
+
+.ground {
+    color: transparent;
+    position: absolute;
+
+    --x: -100;
+
+    top: 90vh;
+    left: calc(var(--x) * 1vh);
+
+    height: 10vh;
+    width: 300vh;
+}
+
+.ground-image {
+    height: 10vh;
     width: 300vh;
 }
 
@@ -112,17 +130,6 @@ body {
     width: 13vh;
     transform: rotate(calc(var(--rotation) * 1deg));
     transition: all 0.34s;
-}
-
-.ground {
-    /* border: 1px solid red; */
-
-    --y: 90;
-
-    position: absolute;
-    top: calc(var(--y) * 1vh);
-    height: 9.9vh;
-    width: 100vh;
 }
 
 .octopus {

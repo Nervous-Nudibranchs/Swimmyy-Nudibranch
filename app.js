@@ -62,6 +62,12 @@ function update(time) {
             }
             backgroundImg.move(delta);
 
+            // Move ground
+            if (ground.x < -200) {
+                ground.x = -100;
+            }
+            ground.move(delta);
+
             // Check for collisions between player and ground
             const playerBounds = player.rect();
             let obsCollision = false;
