@@ -57,14 +57,14 @@ function update(time) {
             }
 
             // Move background
-            if (backgroundImg.x < -200) {
-                backgroundImg.x = -100;
+            if (backgroundImg.x < -100) {
+                backgroundImg.x = 0;
             }
             backgroundImg.move(delta);
 
             // Move ground
-            if (ground.x < -200) {
-                ground.x = -100;
+            if (ground.x < -100) {
+                ground.x = 0;
             }
             ground.move(delta);
 

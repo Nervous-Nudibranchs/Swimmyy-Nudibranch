@@ -34,7 +34,7 @@ body {
 .background-image {
     position: absolute;
 
-    --x: -100;
+    --x: 0;
 
     left: calc(var(--x) * 1vh);
 
@@ -46,7 +46,7 @@ body {
     color: transparent;
     position: absolute;
 
-    --x: -100;
+    --x: 0;
 
     top: 90vh;
     left: calc(var(--x) * 1vh);
@@ -61,25 +61,35 @@ body {
 }
 
 .score-board {
+    z-index: 1;
     /* border: 1px solid red; */
     color: white;
     background-color: rgba(0, 0, 0, 0);
-    position: absolute;
+    position: fixed;
+    left: 0vh;
+    top: 0vh;
     font-size: 8vh;
-    width: 100vh;
+    width: 100vw;
+    height: 8vw;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+    margin-left: 6vw;
 }
 
 .score {
-    margin-left: 1vh;
+    margin-left: 1vw;
 }
 
 .score-coin {
     width: 6vh;
     height: 6vh;
-    margin-left: 6vh;
 }
 
 .sound-btn {
@@ -93,7 +103,7 @@ body {
     width: 6vh;
     height: 6vh;
 
-    margin-left: 60vh;
+    margin-right: 2vw;
 
     display: grid;
     justify-content: center;
@@ -112,7 +122,7 @@ body {
 
     z-index: 1;
     position: absolute;
-    left: 40vh;
+    left: 25vh;
     top: calc(var(--y) * 1vh);
 
     overflow: visible;
