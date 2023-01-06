@@ -34,7 +34,7 @@ export default class Player {
     reset() {
         this.y = constants.PLAYER_START_Y_POS;
         this.rotation = constants.PLAYER_INITIAL_ROTATION;
-        this.velocity = constants.INITIAL_VELOCITY;
+        this.velocity = constants.PLAYER_INITIAL_VELOCITY;
     }
 
     move(delta) {
@@ -45,7 +45,7 @@ export default class Player {
         if (action === "jump") {
             this.velocity = constants.JUMP_VELOCITY;
         }
-        if (this.velocity < constants.MAX_VELOCITY) {
+        if (this.velocity < constants.PLAYER_MAX_FALL_VELOCITY) {
             this.velocity += constants.GRAVITY_ACCELERATION * delta;
         }
     }

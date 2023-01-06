@@ -35,8 +35,10 @@ let jumpTimer = null;
 let keyPress = false;
 let action = "fall";
 let obstacles = [];
-let createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
+let createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY_EASY;
 let kelpTypes = ["long", "med", "short"];
+let gameModes = ["easy", "med", "hard"];
+let gameMode = gameModes[0];
 
 // Executes every frame
 function update(time) {
@@ -46,6 +48,13 @@ function update(time) {
 
         if (gameStarted === true) {
             frameTick++;
+            if (frameTick < Constants.EASY_MODE_TICKS) {
+                gameMode = gameModes[0];
+            } else if (frameTick < Constants.MED_MODE_TICKS) {
+                gameMode = gameModes[1];
+            } else {
+                gameMode = gameModes[2];
+            }
 
             // Move Player
             player.updateVelocity(delta, action);
@@ -115,8 +124,11 @@ function update(time) {
                     action = "fall";
                     jumpTimer -= 1;
                 }
+
+                console.log(frameTick);
+                console.log(gameMode);
                 createObstacleDelay -= 1;
-                if (createObstacleDelay === 0) {
+                if (createObstacleDelay <= 0) {
                     console.log("Creating obstacle");
                     createObstacles();
                 }
@@ -199,13 +211,13 @@ function playSound(sound) {
 }
 
 function resetGame() {
+    frameTick = 0;
     score = 0;
     player.reset();
     for (const obstacle of obstacles) {
         obstacle.el.remove();
     }
     obstacles = [];
-    createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
     createObstacles();
 }
 
@@ -225,5 +237,13 @@ function createObstacles() {
     const obstacleContainer = new Obstacle(renderObstacle(randomType));
     gameWindow.append(obstacleContainer.el);
     obstacles.push(obstacleContainer);
-    createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
+
+    // Adjust distance between obstacles based on gameMode
+    if (gameMode === "easy") {
+        createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY_EASY;
+    } else if (gameMode === "med") {
+        createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY_MED;
+    } else {
+        createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY_HARD;
+    }
 }
