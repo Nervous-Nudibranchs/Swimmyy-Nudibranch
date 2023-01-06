@@ -5,7 +5,7 @@ export default class Obstacle {
         this.el = element;
         this.x = Constants.OBSTACLE_START_X_POS;
         this.velocity = Constants.OBSTACLE_VELOCITY;
-        this.point = true;
+        this.passed = false;
     }
 
     get x() {
@@ -16,15 +16,15 @@ export default class Obstacle {
         this.el.style.setProperty("--x", value);
     }
 
-    obstacleBoundaries() {
-        const boundaries = {
+    obstacleBounds() {
+        const bounds = {
             octopus: this.el.querySelector("#octopus").getBoundingClientRect(),
             kelp: this.el.querySelector("#kelp").getBoundingClientRect(),
         };
-        return boundaries;
+        return bounds;
     }
 
-    containerBoundaries() {
+    containerBounds() {
         return this.el.getBoundingClientRect();
     }
 

@@ -36,6 +36,8 @@ body {
 }
 
 .score {
+    z-index: 1;
+    color: white;
     display: inline;
     background-color: none;
     position: absolute;

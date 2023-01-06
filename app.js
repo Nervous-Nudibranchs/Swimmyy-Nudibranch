@@ -28,6 +28,7 @@ let obstacles = [];
 let createObstacleDelay = Constants.CREATE_OBSTACLE_DELAY;
 let kelpTypes = ["long", "med", "short"];
 
+// Executes every frame
 function update(time) {
     if (lastTime) {
         // Update time interval
@@ -46,43 +47,55 @@ function update(time) {
             player.move(delta);
             player.updateRotation();
 
-            // Check for collisions between player and obstacles
-            checkCollisions(player.rect(), ground.rect(), "obstacle");
-            for (const obstacle of obstacles) {
-                const containerBoundaries = obstacle.containerBoundaries();
-                const obstacleBoundaries = obstacle.obstacleBoundaries();
-                checkCollisions(
-                    player.rect(),
-                    obstacleBoundaries.kelp,
-                    "obstacle"
-                );
-                checkCollisions(
-                    player.rect(),
-                    obstacleBoundaries.octopus,
-                    "obstacle"
-                );
-                if (
-                    obstacle.point === true &&
-                    checkCollisions(
-                        player.rect(),
-                        containerBoundaries,
-                        "addScore"
-                    )
-                ) {
-                    score++;
-                    obstacle.point = false;
-                }
+            // Check for collisions between player and ground
+            const playerBounds = player.rect();
+            let obsCollision = false;
+            if (checkCollisions(playerBounds, ground.rect(), "obstacle")) {
+                dieSound.play();
+                resetGame();
+                obsCollision = true;
             }
 
-            // Check for user inputs and update state accordingly
-            if (action === "jump" || jumpTimer > 0) {
-                action = "fall";
-                jumpTimer -= 1;
-            }
-            createObstacleDelay -= 1;
-            if (createObstacleDelay === 0) {
-                console.log("Creating obstacle");
-                createObstacles();
+            // Check for collisions between player and obstacles
+            if (!obsCollision) {
+                for (const obstacle of obstacles) {
+                    const containerBounds = obstacle.containerBounds();
+                    const kelpBounds = obstacle.obstacleBounds().kelp;
+                    const octopusBounds = obstacle.obstacleBounds().octopus;
+                    if (
+                        checkCollisions(playerBounds, kelpBounds, "obstacle") ||
+                        checkCollisions(playerBounds, octopusBounds, "obstacle")
+                    ) {
+                        dieSound.play();
+                        resetGame();
+                        obsCollision = true;
+                    }
+
+                    // Check if current obstacle isn't passed && score it
+                    if (
+                        !obsCollision &&
+                        obstacle.passed === false &&
+                        checkCollisions(
+                            playerBounds,
+                            containerBounds,
+                            "addScore"
+                        )
+                    ) {
+                        score++;
+                        obstacle.passed = true;
+                    }
+                }
+
+                // Check for user inputs and update state accordingly
+                if (action === "jump" || jumpTimer > 0) {
+                    action = "fall";
+                    jumpTimer -= 1;
+                }
+                createObstacleDelay -= 1;
+                if (createObstacleDelay === 0) {
+                    console.log("Creating obstacle");
+                    createObstacles();
+                }
             }
         }
     }
@@ -151,20 +164,12 @@ function resetGame() {
 }
 
 function checkCollisions(rect1, rect2, type) {
-    if (
+    return (
         rect1.right > rect2.left &&
         rect1.left < rect2.right &&
         rect1.top < rect2.bottom &&
         rect1.bottom > rect2.top
-    ) {
-        if (type === "obstacle") {
-            console.log("collision");
-            dieSound.play();
-            resetGame();
-        } else if (type === "addScore") {
-            return true;
-        }
-    }
+    );
 }
 
 function createObstacles() {
